@@ -50,9 +50,9 @@ jobs:
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: ${envArray}
+#    strategy:
+#      matrix:
+#        environment:
     steps:
       - uses: actions/upload-artifact@v2
         with:
