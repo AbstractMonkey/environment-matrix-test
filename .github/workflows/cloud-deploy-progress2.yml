@@ -15,7 +15,10 @@ on:
         type: boolean
         required: true
         description: WHF
-        
+
+env:
+  envString: ''
+
 jobs:
   parse-envs:
     name: Parse selected environment(s)
@@ -41,19 +44,21 @@ jobs:
               envString=$envString"whf "
             fi
           fi
-          envString="["$envString"]"
-          echo $envString
-          envArray=($envString)
-          echo {$envArray}
-          for i in ${!envArray[@]}; do
-            echo "element $i is ${envArray[$i]}"
-          done
+          ${{ env.envString }}=$envString
+          echo ${{ env.envString }}
+#          envString="["$envString"]"
+#          echo $envString
+#          envArray=($envString)
+#          echo {$envArray}
+#          for i in ${!envArray[@]}; do
+#            echo "element $i is ${envArray[$i]}"
+#          done
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
-#        environment:
+#        environment: ${{ env.squad360Id }}
     steps:
       - uses: actions/upload-artifact@v2
         with:
