@@ -1,4 +1,4 @@
-name: Create Closure Primer Jobs 2
+name: Create Closure Primer Jobs
 
 on:
   workflow_dispatch:
