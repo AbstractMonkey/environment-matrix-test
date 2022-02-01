@@ -42,33 +42,6 @@ jobs:
               envArray['whf']="whf"
              }
              core.exportVariable('envPass',envArray)
-      - name: Parse environment selection(s)
-        id: parser
-        run: |
-          declare -a envArray
-          i=0
-          if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
-          then
-            echo "No  environment selected - at least one environment must be selected from which to deploy"
-            exit 1
-          else
-            if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
-            then
-              envArray[i]="stg"
-              let i+=1
-            fi
-            if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
-            then
-              envArray[i]="uat"
-              let i+=1
-            fi
-            if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
-            then
-              envArray[i]="whf"
-              let i+=1
-            fi
-          fi
-          echo "::set-output name=envPass::${envArray[*]}"
 
   env-test:
     environment: ${{ matrix.environment }}
