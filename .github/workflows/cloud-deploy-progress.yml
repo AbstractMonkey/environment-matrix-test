@@ -25,7 +25,11 @@ jobs:
         if [[ -z ${{ github.event.inputs.stgEnvironment }} || -z ${{ github.event.inputs.uatEnvironment }} || -z ${{ github.event.inputs.whfEnvironment }} ]]; then
           echo "No  environment selected - at least one environment must be selected from which to deploy"
         else
-          echo "At least one environment selected"
+          echo "Deploying to:"
+          if [[ -z ${{ github.event.inputs.stgEnvironment }} ]]; then
+            echo "STG"
+          ${{ github.event.inputs.uatEnvironment }}
+          ${{ github.event.inputs.whfEnvironment }}
         fi
 
 check_vars()
