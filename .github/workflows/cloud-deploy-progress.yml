@@ -34,15 +34,15 @@ jobs:
           else
             if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
             then
-              envString=$envString"[stg, "
+              envString=$envString"['stg', "
             fi
             if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
             then
-              envString=$envString"uat, "
+              envString=$envString"'uat', "
             fi
             if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
             then
-              envString=$envString"whf]"
+              envString=$envString"'whf']"
             fi
           fi
           echo "::set-output name=envPass::$envString"
