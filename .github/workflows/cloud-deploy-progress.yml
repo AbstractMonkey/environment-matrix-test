@@ -45,6 +45,7 @@ jobs:
               envString=$envString"'whf']"
             fi
           fi
+          envString=$(envString)
           echo "::set-output name=envPass::$envString"
 
   env-test:
