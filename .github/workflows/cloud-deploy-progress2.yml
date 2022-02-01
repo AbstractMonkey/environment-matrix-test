@@ -23,16 +23,16 @@ jobs:
       matrix:
         environment: ${{ github.event.inputs.stgEnvironment }} ${{ github.event.inputs.uatEnvironment }} ${{ github.event.inputs.whfEnvironment }}
     steps:
-    - name: Parse Environments
-    - run: |
-        cat ${{ secrets.one }} >> log.txt
+      - name: Parse Environments
+      - run: |
+          cat ${{ secrets.one }} >> log.txt
         
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
     steps:
-    - name: Publish Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        path: "${{ github.workspace }}/log.txt"
-        name: log.txt
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: "${{ github.workspace }}/log.txt"
+          name: log.txt
