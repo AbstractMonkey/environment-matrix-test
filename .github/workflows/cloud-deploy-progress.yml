@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: JSON
-        uses: actions/github-script@V3
+        uses: actions/github-script@v5
         with: 
           script: |
             let envArray={}
