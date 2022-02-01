@@ -19,6 +19,7 @@ on:
 
 jobs:
   parse-envs:
+    name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
       - run: |
