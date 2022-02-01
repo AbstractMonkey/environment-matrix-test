@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
+          if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]; then
+            echo "No  environment selected - at least one environment must be selected from which to deploy"
           if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]; then
             cat "stg " >> $envString
           if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]; then
@@ -31,6 +33,7 @@ jobs:
           echo $envString
           else
             echo "No  environment selected - at least one environment must be selected from which to deploy"
+          exit 0
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
