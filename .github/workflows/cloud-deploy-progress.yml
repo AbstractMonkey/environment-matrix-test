@@ -23,8 +23,9 @@ jobs:
     name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
-      -  id: parser
-      - run: |
+      - name: Parse environment selection(s)
+        id: parser
+        run: |
           envString=""
           if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
           then
