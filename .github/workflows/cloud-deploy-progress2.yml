@@ -29,13 +29,13 @@ jobs:
             exit 1
           if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
           then
-            echo "stg " >> $envString
+            $envString=$envString"stg "
           if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
           then
-            echo "uat " >> $envString
+            $envString=$envString"uat "
           if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
           then
-            echo "whf " >> $envString
+            $envString=$envString"whf "
           echo $envString
           else
             echo "No  environment selected - at least one environment must be selected from which to deploy"
