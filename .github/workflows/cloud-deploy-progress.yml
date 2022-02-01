@@ -6,19 +6,13 @@ on:
       stgEnvironment:
         type: boolean
         required: true
-        description: Deploy to STG
-        options:
-        - STG
+        description: STG
       uatEnvironment:
         type: boolean
         required: true
-        description: Deploy to UAT
-        options:
-        - UAT
+        description: UAT
       whfEnvironment:
         type: boolean
         required: true
-        description: Deploy to WHF
-        options:
-        - WHF
+        description: WHF
 
