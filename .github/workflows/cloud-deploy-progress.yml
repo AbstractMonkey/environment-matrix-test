@@ -49,7 +49,7 @@ jobs:
               let i+=1
             fi
           fi
-          echo "::set-output name=envPass::$envArray"
+          echo "::set-output name=envPass::${envArray[*]}"
 
   env-test:
     environment: ${{ matrix.environment }}
