@@ -24,7 +24,7 @@ jobs:
     steps:
       runs-on: ubuntu-latest
       name: Parse Environments
-    - run: |
+      run: |
         cat ${{ secrets.one }} >> log.txt
         
   upload-artifact:
@@ -36,4 +36,3 @@ jobs:
       with:
         path: "${{ github.workspace }}/log.txt"
         name: log.txt
-
