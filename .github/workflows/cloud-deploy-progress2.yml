@@ -41,17 +41,22 @@ jobs:
               envString=$envString"whf "
             fi
           fi
-          echo "envString=$envString" >> $GITHUB_ENV
+          echo $envString > ${{ github.workspace }}/environment.txt
           done
-
-  upload-artifact:
-    environment: ${{ matrix.environment }}
-    needs: parse-envs
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: ${{ env.envString }}
-    steps:
-      - run: |
-          echo ${{ env.envString }}
-          echo ${{ secrets.env }}
+      - name: Upload processed environment selection
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ github.workspace }}
+          name: environment.txt
+          
+#  env-test:
+#    environment: ${{ matrix.environment }}
+#    needs: parse-envs
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        environment: ${{ env.envString }}
+#    steps:
+#      - run: |
+#          echo ${{ env.envString }}
+#          echo ${{ secrets.env }}
