@@ -46,7 +46,7 @@ jobs:
             fi
           fi
           echo "::set-output name=envPass::$envString"
-          done
+
   env-test:
     environment: ${{ matrix.environment }}
     name: Environment test
