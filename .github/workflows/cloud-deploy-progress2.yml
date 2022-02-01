@@ -16,8 +16,8 @@ on:
         required: true
         description: WHF
 
-env:
-  envString: ''
+#env:
+#  envString: ''
 
 jobs:
   parse-envs:
