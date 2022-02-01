@@ -21,7 +21,6 @@ jobs:
     name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
-      - name: parser
       - run: |
           envString=""
           if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
@@ -42,14 +41,12 @@ jobs:
               envString=$envString"whf "
             fi
           fi
-          ${{ env.envString }}=$envString
-          echo ${{ env.envString }}
-          echo "::set-output name=envString::$(envString)"
+          echo "envString=$envString" >> $GITHUB_ENV
           done
-    
+
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: ${{jobs.parse-envs.steps.parser.outputs.envString}}
+        environment: ${{env.envString}}
