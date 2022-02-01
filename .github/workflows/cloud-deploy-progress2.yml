@@ -57,15 +57,3 @@ jobs:
     steps:
       - run: |
           echo ${{ secrets.env }}
-          
-#  env-test:
-#    environment: ${{ matrix.environment }}
-#    needs: parse-envs
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        environment: ${{ env.envString }}
-#    steps:
-#      - run: |
-#          echo ${{ env.envString }}
-#          echo ${{ secrets.env }}
