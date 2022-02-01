@@ -24,13 +24,16 @@ jobs:
     steps:
       runs-on: ubuntu-latest
       name: Parse Environments
-      run: |
+    - run: |
         cat ${{ secrets.one }} >> log.txt
         
   upload-artifact:
-  - name: Publish Artifact
-    uses: actions/upload-artifact@v2
-    with:
-      path: "${{ github.workspace }}/log.txt"
-      name: log.txt
+    needs: parse-envs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Publish Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: "${{ github.workspace }}/log.txt"
+        name: log.txt
 
