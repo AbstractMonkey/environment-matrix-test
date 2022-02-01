@@ -23,7 +23,15 @@ jobs:
     steps:
       - run: |
           cat ${{ secrets.one }} >> log.txt
-        
+          if [[ -z ${{ github.event.inputs.stgEnvironment }} == True ]]; then
+            cat "stg " >> $envString
+          if [[ -z ${{ github.event.inputs.uatEnvironment }} == True ]]; then
+            cat "uat " >> $envString
+          if [[ -z ${{ github.event.inputs.whfEnvironment }} == True ]]; then
+            cat "whf " >> $envString
+          echo $envString
+          else
+            echo "No  environment selected - at least one environment must be selected from which to deploy"
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
