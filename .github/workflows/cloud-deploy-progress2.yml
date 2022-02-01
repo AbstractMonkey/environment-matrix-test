@@ -4,19 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       stgEnvironment:
-        type: choice
+        type: boolean
         required: true
         description: STG
         options:
         - stg
       uatEnvironment:
-        type: choice
+        type: boolean
         required: true
         description: UAT
         options:
         - uat
       whfEnvironment:
-        type: choice
+        type: boolean
         required: true
         description: WHF
         options:
