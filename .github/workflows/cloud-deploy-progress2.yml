@@ -7,20 +7,15 @@ on:
         type: boolean
         required: true
         description: STG
-        options:
-        - stg
       uatEnvironment:
         type: boolean
         required: true
         description: UAT
-        options:
-        - uat
       whfEnvironment:
         type: boolean
         required: true
         description: WHF
-        options:
-        - whf
+
 
 jobs:
   parse-envs:
