@@ -46,13 +46,7 @@ jobs:
           fi
           ${{ env.envString }}=$envString
           echo ${{ env.envString }}
-#          envString="["$envString"]"
-#          echo $envString
-#          envArray=($envString)
-#          echo {$envArray}
-#          for i in ${!envArray[@]}; do
-#            echo "element $i is ${envArray[$i]}"
-#          done
+          done
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
