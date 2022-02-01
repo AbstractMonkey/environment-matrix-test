@@ -8,10 +8,11 @@ on:
         type: boolean
         required: true
         description: STG
+        
+jobs:
   env-test:
     environment: ${{ matrix.environment }}
     name: Environment test
-    needs: parse-envs
     runs-on: ubuntu-latest
     strategy:
       matrix:
