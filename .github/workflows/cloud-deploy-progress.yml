@@ -3,11 +3,22 @@ name: Create Closure Primer Jobs
 on:
   workflow_dispatch:
     inputs:
-      environment:
+      stgEnvironment:
         type: boolean
         required: true
-        description: Select desired deployment environment(s)
+        description: Deploy to STG
         options:
         - STG
+      uatEnvironment:
+        type: boolean
+        required: true
+        description: Deploy to UAT
+        options:
         - UAT
+      whfEnvironment:
+        type: boolean
+        required: true
+        description: Deploy to WHF
+        options:
         - WHF
+
