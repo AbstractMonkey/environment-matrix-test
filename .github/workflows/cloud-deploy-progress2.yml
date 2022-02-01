@@ -44,6 +44,9 @@ jobs:
           echo $envString
           envArray=($envString)
           echo {$envArray}
+          for i in ${!envArray[@]}; do
+            echo "element $i is ${envArray[$i]}"
+          done
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
