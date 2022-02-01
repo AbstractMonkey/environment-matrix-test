@@ -15,8 +15,7 @@ on:
         type: boolean
         required: true
         description: WHF
-
-
+        
 jobs:
   parse-envs:
     name: Parse selected environment(s)
@@ -43,12 +42,14 @@ jobs:
             fi
           fi
           echo $envString
+          envArray=($envString)
+          echo {$envArray}
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: ${{ github.event.inputs.stgEnvironment }} ${{ github.event.inputs.uatEnvironment }} ${{ github.event.inputs.whfEnvironment }}
+        environment: ${envArray}
     steps:
       - uses: actions/upload-artifact@v2
         with:
