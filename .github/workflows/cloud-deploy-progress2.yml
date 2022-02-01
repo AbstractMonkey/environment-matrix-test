@@ -45,14 +45,13 @@ jobs:
           done
 
   upload-artifact:
+    environment: ${{ matrix.environment }}
     needs: parse-envs
     runs-on: ubuntu-latest
     strategy:
       matrix:
         environment: ${{ env.envString }}
     steps:
-        with:
-          environment: ${{ matrix.environment }}
-        - run: |
+      - run: |
           echo ${{ env.envString }}
           echo ${{ secrets.env }}
