@@ -23,6 +23,25 @@ jobs:
     name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
+      - name: JSON
+        uses: actions/github-script@V3
+        with: 
+          script: |
+            let envArray={}
+             if ( ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false )
+             {
+             core.setFailed ("No  environment selected - at least one environment must be selected from which to deploy")
+             }
+             if ( ${{ github.event.inputs.stgEnvironment }} == true ){
+              envArray['stg']="stg"
+             }
+             if ( ${{ github.event.inputs.uatEnvironment }} == true ){
+              envArray['uat']="uat"
+             }
+             if ( ${{ github.event.inputs.whfEnvironment }} == true ){
+              envArray['whf']="whf"
+             }
+             core.exportVariable('envPass',envArray)
       - name: Parse environment selection(s)
         id: parser
         run: |
@@ -58,7 +77,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [${{ needs.parse-envs.outputs.envSelection }}]
+        environment: ${{ needs.parse-envs.outputs.envSelection }}
     steps:
       - name: Verify proper environment switching via matrix strategy
         id: env-verify
