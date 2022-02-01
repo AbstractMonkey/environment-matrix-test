@@ -1,0 +1,36 @@
+name: Create Closure Primer Jobs 2
+
+on:
+  workflow_dispatch:
+    inputs:
+      stgEnvironment:
+        type: boolean
+        required: true
+        description: STG
+      uatEnvironment:
+        type: boolean
+        required: true
+        description: UAT
+      whfEnvironment:
+        type: boolean
+        required: true
+        description: WHF
+
+jobs:
+  parse-envs:
+    strategy:
+      matrix:
+        environment: ${{ github.event.inputs.stgEnvironment }} ${{ github.event.inputs.uatEnvironment }} ${{ github.event.inputs.whfEnvironment }}
+    steps:
+      runs-on: ubuntu-latest
+      name: Parse Environments
+      run: |
+        cat ${{ secrets.one }} >> log.txt
+        
+  upload-artifact:
+  - name: Publish Artifact
+    uses: actions/upload-artifact@v2
+    with:
+      path: "${{ github.workspace }}/log.txt"
+      name: log.txt
+
