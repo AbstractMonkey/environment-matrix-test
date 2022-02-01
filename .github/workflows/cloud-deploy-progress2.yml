@@ -46,9 +46,27 @@ jobs:
       - name: Upload processed environment selection
         uses: actions/upload-artifact@v2
         with:
-          path: ${{ github.workspace }}
-          name: environment.txt
-          
+          name: environment
+          path: environment.txt
+
+  env-test:
+    environment: ${{ matrix.environment }}
+    name: Environment test
+    needs: parse-envs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: $envString
+    steps:
+      - name: Download user's processed environment selection
+        uses: actions/download-artifact@v2
+        with:
+          name: environment
+      - run: |
+          envString=`cat environment.txt`
+          echo $envString
+
+
 #  env-test:
 #    environment: ${{ matrix.environment }}
 #    needs: parse-envs
