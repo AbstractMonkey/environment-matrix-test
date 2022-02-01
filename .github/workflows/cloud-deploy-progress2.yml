@@ -50,3 +50,7 @@ jobs:
     strategy:
       matrix:
         environment: ${{env.envString}}
+    steps:
+      - run: |
+          echo ${{env.envString}}
+          echo ${{secrets.env}}
