@@ -16,3 +16,12 @@ on:
         required: true
         description: WHF
 
+jobs:
+  parse-envs:
+    steps:
+      runs-on: ubuntu-latest
+      name: Parse Environments
+      run: |
+        
+
+
