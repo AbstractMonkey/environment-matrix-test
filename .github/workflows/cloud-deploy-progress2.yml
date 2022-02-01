@@ -18,13 +18,13 @@ on:
 
 jobs:
   parse-envs:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         environment: ${{ github.event.inputs.stgEnvironment }} ${{ github.event.inputs.uatEnvironment }} ${{ github.event.inputs.whfEnvironment }}
     steps:
-      runs-on: ubuntu-latest
-      name: Parse Environments
-      run: |
+    - name: Parse Environments
+    - run: |
         cat ${{ secrets.one }} >> log.txt
         
   upload-artifact:
