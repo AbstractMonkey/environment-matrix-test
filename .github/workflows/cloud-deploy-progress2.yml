@@ -18,9 +18,12 @@ on:
 
 jobs:
   parse-envs:
+    outputs:
+      envSelection: ${{ steps.parser.outputs.envPass }}
     name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
+      -  id: parser
       - run: |
           envString=""
           if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
@@ -41,14 +44,8 @@ jobs:
               envString=$envString"whf "
             fi
           fi
-          echo $envString > environment.txt
+          echo "::set-output name=envPass::$envString"
           done
-      - name: Upload processed environment selection
-        uses: actions/upload-artifact@v2
-        with:
-          name: environment
-          path: environment.txt
-
   env-test:
     environment: ${{ matrix.environment }}
     name: Environment test
@@ -56,17 +53,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: $envString
+        environment: ${{ needs.parse-envs.outputs.envSelection }}
     steps:
       - name: Download user's processed environment selection
-        uses: actions/download-artifact@v2
-        with:
-          name: environment
-      - run: |
-          envString=`cat environment.txt`
+      -  run: |
           echo $envString
-
-
+          
 #  env-test:
 #    environment: ${{ matrix.environment }}
 #    needs: parse-envs
