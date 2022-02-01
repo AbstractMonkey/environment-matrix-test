@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: ${{ needs.parse-envs.outputs.envSelection }}
+        environment: ${{ fromJson(needs.parse-envs.outputs.envSelection) }}
     steps:
       - name: Verify proper environment switching via matrix strategy
         id: env-verify
