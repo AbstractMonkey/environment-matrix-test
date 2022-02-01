@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          cat ${{ secrets.one }} >> log.txt
           if [[ -z ${{ github.event.inputs.stgEnvironment }} == True ]]; then
             cat "stg " >> $envString
           if [[ -z ${{ github.event.inputs.uatEnvironment }} == True ]]; then
