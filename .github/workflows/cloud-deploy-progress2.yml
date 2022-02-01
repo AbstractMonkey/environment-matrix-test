@@ -7,14 +7,20 @@ on:
         type: choice
         required: true
         description: STG
+        options:
+        - stg
       uatEnvironment:
         type: choice
         required: true
         description: UAT
+        options:
+        - uat
       whfEnvironment:
         type: choice
         required: true
         description: WHF
+        options:
+        - whf
 
 jobs:
   parse-envs:
