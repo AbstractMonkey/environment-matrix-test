@@ -49,8 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: ${{env.envString}}
+        environment: ${{ env.envString }}
     steps:
-      - run: |
-          echo ${{env.envString}}
-          echo ${{secrets.env}}
+        with:
+          environment: ${{ matrix.environment }}
+        - run: |
+          echo ${{ env.envString }}
+          echo ${{ secrets.env }}
