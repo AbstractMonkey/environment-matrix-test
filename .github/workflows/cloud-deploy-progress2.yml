@@ -16,9 +16,6 @@ on:
         required: true
         description: WHF
 
-#env:
-#  envString: ''
-
 jobs:
   parse-envs:
     name: Parse selected environment(s)
@@ -56,8 +53,3 @@ jobs:
     strategy:
       matrix:
         environment: ${{jobs.parse-envs.steps.parser.outputs.envString}}
-    steps:
-      - uses: actions/upload-artifact@v2
-        with:
-          path: "${{ github.workspace }}/log.txt"
-          name: log.txt
