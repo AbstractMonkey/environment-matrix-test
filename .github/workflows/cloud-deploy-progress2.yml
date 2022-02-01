@@ -55,9 +55,8 @@ jobs:
       matrix:
         environment: ${{ needs.parse-envs.outputs.envSelection }}
     steps:
-      - name: Download user's processed environment selection
-      -  run: |
-          echo $envString
+      - run: |
+          echo ${{ secrets.env }}
           
 #  env-test:
 #    environment: ${{ matrix.environment }}
