@@ -19,9 +19,6 @@ on:
 jobs:
   parse-envs:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: ${{ github.event.inputs.stgEnvironment }} ${{ github.event.inputs.uatEnvironment }} ${{ github.event.inputs.whfEnvironment }}
     steps:
       - run: |
           cat ${{ secrets.one }} >> log.txt
@@ -29,6 +26,9 @@ jobs:
   upload-artifact:
     needs: parse-envs
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: ${{ github.event.inputs.stgEnvironment }} ${{ github.event.inputs.uatEnvironment }} ${{ github.event.inputs.whfEnvironment }}
     steps:
       - uses: actions/upload-artifact@v2
         with:
