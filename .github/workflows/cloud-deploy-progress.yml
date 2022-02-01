@@ -41,7 +41,7 @@ jobs:
              if ( ${{ github.event.inputs.whfEnvironment }} == true ){
               envArray['whf']="whf"
              }
-             core.exportVariable('envPass','envArray')
+             core.setOutput('envPass',envArray)
 
   env-test:
     environment: ${{ matrix.environment }}
