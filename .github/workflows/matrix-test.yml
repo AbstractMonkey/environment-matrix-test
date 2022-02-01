@@ -21,10 +21,10 @@ jobs:
       - name: Verify proper environment switching via matrix strategy
         id: env-verify
         run: |
-          cat ${{ secrets.env }} >> ${{ matrix.environment }}.txt
-          cat ${{ secrets.one }} >> ${{ matrix.environment }}.txt
-          cat ${{ secrets.two }} >> ${{ matrix.environment }}.txt
-          cat ${{ secrets.three }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.env }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.one }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.two }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.three }} >> ${{ matrix.environment }}.txt
           
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
