@@ -22,11 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          if [[ -z ${{ github.event.inputs.stgEnvironment }} == True ]]; then
+          if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]; then
             cat "stg " >> $envString
-          if [[ -z ${{ github.event.inputs.uatEnvironment }} == True ]]; then
+          if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]; then
             cat "uat " >> $envString
-          if [[ -z ${{ github.event.inputs.whfEnvironment }} == True ]]; then
+          if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]; then
             cat "whf " >> $envString
           echo $envString
           else
