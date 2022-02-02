@@ -24,12 +24,31 @@ jobs:
       - name: Parse environment selection(s)
         id: parser
         run: |
-          MATRIX_PARAMS_COMBINATIONS='
+          MATRIX_PARAMS=""
+          if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
+          then
+            echo "No  environment selected - at least one environment must be selected from which to deploy"
+            exit 1
+          else
+            if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
+            then
+              MATRIX_PARAMS=$MATRIX_PARAMS"{\"environment\": \"stg\"},\n"
+            fi
+            if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
+            then
+              MATRIX_PARAMS=$MATRIX_PARAMS"{\"environment\": \"uat\"},\n"
+            fi
+            if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
+            then
+              MATRIX_PARAMS=$MATRIX_PARAMS"{\"environment\": \"whf\"},\n"
+            fi
+          fi
+          MATRIX_PARAMS_DEUX='
               {"environment": "stg"},
               {"environment": "uat"},
               {"environment": "whf"},
           '
-          echo ::set-output name=envPass::{\"include\":[$MATRIX_PARAMS_COMBINATIONS]}
+          echo ::set-output name=envPass::{\"include\":[$MATRIX_PARAMS]}
     outputs:
       envSelection: ${{ steps.parser.outputs.envPass }}
 
