@@ -1,0 +1,71 @@
+name: Create Closure Primer Jobs
+
+on:
+  workflow_dispatch:
+    inputs:
+      stgEnvironment:
+        type: boolean
+        required: true
+        description: STG
+      uatEnvironment:
+        type: boolean
+        required: true
+        description: UAT
+      whfEnvironment:
+        type: boolean
+        required: true
+        description: WHF
+
+jobs:
+  parse-envs:
+    name: Parse selected environment(s)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Parse environment selection(s)
+        id: parser
+        run: |
+          MATRIX_PARAMS=""
+          if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
+          then
+            echo "No  environment selected - at least one environment must be selected from which to deploy"
+            exit 1
+          else
+            if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
+            then
+              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "stg"},\n"
+            fi
+            if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
+            then
+              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "uat"},\n"
+            fi
+            if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
+            then
+              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "whf"},"
+            fi
+          fi
+          echo ::set-output name=envPass::{\"environment\":[$MATRIX_PARAMS]}
+    outputs:
+      envSelection: ${{ steps.parser.outputs.envPass }}
+
+  env-test:
+    environment: ${{ matrix.environment }}
+    name: Environment test
+    needs: parse-envs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.parse-envs.outputs.envSelection) }}
+    steps:
+      - name: Verify proper environment switching via matrix strategy
+        id: env-verify
+        run: |
+          echo ${{ secrets.env }} >> log.txt
+          echo ${{ secrets.one }} >> log.txt
+          echo ${{ secrets.two }} >> log.txt
+          echo ${{ secrets.three }} >> log.txt
+          echo ""
+          
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: log.txt
+          name: log
