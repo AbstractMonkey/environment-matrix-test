@@ -43,7 +43,7 @@ jobs:
               MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "whf"},"
             fi
           fi
-          echo ::set-output name=envPass::{\"include\":[$MATRIX_PARAMS]}
+          echo ::set-output name=envPass::{\"environment\":[$MATRIX_PARAMS]}
     outputs:
       envSelection: ${{ steps.parser.outputs.envPass }}
 
