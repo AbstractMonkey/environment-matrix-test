@@ -45,7 +45,9 @@ jobs:
               envString=$envString"'whf']"
             fi
           fi
-          echo "::set-output name=envPass::$envString"
+          echo "::set-output name=envPass::[{\"environment\":\"uat\"},{\"environment\":\"stg\"},{\"environment\":\"whf\"}]"
+#          echo "::set-output name=envPass::$envString"
+#          echo "::set-output name=matrix::[{\"go\":\"1.13\",\"commit\":\"v1.0.0\"},{\"go\":\"1.14\",\"commit\":\"v1.2.0\"}]"
 
   env-test:
     environment: ${{ matrix.environment }}
