@@ -1,0 +1,68 @@
+name: Create Closure Primer Jobs
+
+on:
+  workflow_dispatch:
+    inputs:
+      stgEnvironment:
+        type: boolean
+        required: true
+        description: STG
+      uatEnvironment:
+        type: boolean
+        required: true
+        description: UAT
+      whfEnvironment:
+        type: boolean
+        required: true
+        description: WHF
+
+jobs:
+  parse-envs:
+    outputs:
+      envSelection: ${{ steps.parser.outputs.envPass }}
+    name: Parse selected environment(s)
+    runs-on: ubuntu-latest
+    steps:
+      - name: JSON
+        uses: actions/github-script@v5
+        with: 
+          script: |
+            let envArray={}
+             if ( ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false )
+             {
+             core.setFailed ("No  environment selected - at least one environment must be selected from which to deploy")
+             }
+             if ( ${{ github.event.inputs.stgEnvironment }} == true ){
+              envArray['stg']="stg"
+             }
+             if ( ${{ github.event.inputs.uatEnvironment }} == true ){
+              envArray['uat']="uat"
+             }
+             if ( ${{ github.event.inputs.whfEnvironment }} == true ){
+              envArray['whf']="whf"
+             }
+             core.setOutput('envPass',envArray)
+
+  env-test:
+    environment: ${{ matrix.environment }}
+    name: Environment test
+    needs: parse-envs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: ${{ fromJson(needs.parse-envs.outputs.envSelection) }}
+    steps:
+      - name: Verify proper environment switching via matrix strategy
+        id: env-verify
+        run: |
+          echo ${{ secrets.env }} >> log.txt
+          echo ${{ secrets.one }} >> log.txt
+          echo ${{ secrets.two }} >> log.txt
+          echo ${{ secrets.three }} >> log.txt
+          echo ""
+          
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: log.txt
+          name: log
