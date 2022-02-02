@@ -32,11 +32,11 @@ jobs:
           else
             if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
             then
-              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "stg"},"
+              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "stg"},\n"
             fi
             if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
             then
-              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "uat"},"
+              MATRIX_PARAMS=$MATRIX_PARAMS"{"environment": "uat"},\n"
             fi
             if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
             then
