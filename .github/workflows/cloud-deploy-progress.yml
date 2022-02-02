@@ -23,25 +23,29 @@ jobs:
     name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
-      - name: JSON
-        uses: actions/github-script@v5
-        with: 
-          script: |
-            let envArray={}
-             if ( ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false )
-             {
-             core.setFailed ("No  environment selected - at least one environment must be selected from which to deploy")
-             }
-             if ( ${{ github.event.inputs.stgEnvironment }} == true ){
-              envArray['stg']="stg"
-             }
-             if ( ${{ github.event.inputs.uatEnvironment }} == true ){
-              envArray['uat']="uat"
-             }
-             if ( ${{ github.event.inputs.whfEnvironment }} == true ){
-              envArray['whf']="whf"
-             }
-             core.setOutput('envPass',envArray)
+      - name: Parse environment selection(s)
+        id: parser
+        run: |
+          envString=""
+          if [[ ${{ github.event.inputs.stgEnvironment }} == false && ${{ github.event.inputs.uatEnvironment }} == false && ${{ github.event.inputs.whfEnvironment }} == false ]]
+          then
+            echo "No  environment selected - at least one environment must be selected from which to deploy"
+            exit 1
+          else
+            if [[ ${{ github.event.inputs.stgEnvironment }} == true ]]
+            then
+              envString=$envString"['stg', "
+            fi
+            if [[ ${{ github.event.inputs.uatEnvironment }} == true ]]
+            then
+              envString=$envString"'uat', "
+            fi
+            if [[ ${{ github.event.inputs.whfEnvironment }} == true ]]
+            then
+              envString=$envString"'whf']"
+            fi
+          fi
+          echo "::set-output name=envPass::$envString"
 
   env-test:
     environment: ${{ matrix.environment }}
