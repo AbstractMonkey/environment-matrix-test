@@ -18,8 +18,6 @@ on:
 
 jobs:
   parse-envs:
-    outputs:
-      envSelection: ${{ steps.parser.outputs.envPass }}
     name: Parse selected environment(s)
     runs-on: ubuntu-latest
     steps:
@@ -46,6 +44,8 @@ jobs:
             fi
           fi
           echo "::set-output name=envPass::[{\"environment\":\"uat\"},{\"environment\":\"stg\"},{\"environment\":\"whf\"}]"
+    outputs:
+      envSelection: ${{ steps.parser.outputs.envPass }}
 
   env-test:
     environment: ${{ matrix.environment }}
