@@ -64,15 +64,15 @@ jobs:
       - name: Verify proper environment switching via matrix strategy
         id: env-verify
         run: |
-          echo ${{ secrets.env }} >> log.txt
-          echo ${{ secrets.one }} >> log.txt
-          echo ${{ secrets.two }} >> log.txt
-          echo ${{ secrets.three }} >> log.txt
+          echo ${{ secrets.env }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.one }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.two }} >> ${{ matrix.environment }}.txt
+          echo ${{ secrets.three }} >> ${{ matrix.environment }}.txt
           echo ""
           
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
         with:
-          path: log.txt
-          name: log
+          path: ${{ matrix.environment }}.txt
+          name: ${{ matrix.environment }}
 
