@@ -1,0 +1,60 @@
+name: Regression Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      effectiveDate:
+        description: 'Enter effective date (yyyymmdd):'
+        required: true
+        default: '20200120'
+      clusterStart:
+        type: boolean
+        description: 'Start cluster batch nodes?'
+        required: false
+        default: 'true'
+      clusterStop:
+        type: boolean
+        description: 'Shutdown the cluster when the test completes?'
+        required: false
+        default: 'true'
+      testEnvironment:
+        description: 'Environment? (dev, fred, jeff, etc.) HINT: Where did you deploy your code changes? Personal environments must be stored as a repo secret (<env>_regression_env). '
+        required: false
+        default: 'dev'
+      nodesPerZone:
+        description: 'How many nodes per zone? Note: If clusterStart == false, make sure this matches ACTUAL nodesPerZone.'
+        required: false
+        default: '1'
+      createBaseline:
+        type: boolean
+        description: 'Use this run to generate & store all baseline outputs for this effective date?'
+        required: false
+        default: 'false'
+      maxTolerance:
+        description: 'The maximum absolute tolerance allowed for numeric comparisons during regression testing:'
+        required: false
+        default: '0.04'
+      restartStep:
+        type: choice
+        description: 'Resume from step:'
+        required: false
+        default: 'n/a'
+        options:
+        - n/a
+        - TRAIN_START
+        - CLUSTER_START
+        - TRAINING_MONITOR
+        - FVA_START
+        - FVA_MONITOR
+        - FVA_COMPARE
+        - FVT_START
+        - FVT_MONITOR
+        - FVT_COMPARE
+        - PA_START
+        - PA_MONITOR
+        - PA_COMPARE
+        - SIM_START
+        - SIM_MONITOR
+        - SIM_COMPARE
+        - BASELINE_CREATE
+        - CLUSTER_STOP
