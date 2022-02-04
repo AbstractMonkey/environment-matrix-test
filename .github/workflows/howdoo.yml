@@ -10,12 +10,10 @@ on:
       clusterStart:
         type: boolean
         description: 'Start cluster batch nodes?'
-        required: false
         default: 'true'
       clusterStop:
         type: boolean
         description: 'Shutdown cluster when test completes?'
-        required: false
         default: 'true'
       testEnvironment:
         description: 'Environment? (dev, fred, jeff, etc.) HINT: Where did you deploy your code changes? Personal environments must be stored as a repo secret (<env>_regression_env). '
