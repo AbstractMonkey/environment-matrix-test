@@ -14,7 +14,7 @@ on:
         default: 'true'
       clusterStop:
         type: boolean
-        description: 'Shutdown the cluster when the test completes?'
+        description: 'Shutdown cluster when test completes?'
         required: false
         default: 'true'
       testEnvironment:
