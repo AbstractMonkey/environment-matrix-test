@@ -376,6 +376,15 @@ export const LESSONS: Lesson[] = [
     ],
     interactive: { kind: 'knot', knotId: 'reef-knot' },
   },
+  {
+    id: '3-9', tier: 3, minutes: 4, title: 'Knot: The Slip Knot for Sail Ties',
+    summary: 'A quick-release finish for lashing a furled sail to the boom.',
+    body: [
+      { kind: 'p', text: 'When you flake the main down onto the boom at the end of a sail, you secure it with sail ties (gaskets). Tie them with a slipped reef knot: the same "right over left, left over right" as before, but finish the second half with a bight pushed through instead of the bare end — exactly like one bow of a shoelace.' },
+      { kind: 'callout', tone: 'tip', title: 'Why the slip', text: 'A single tug on the free tail spills the knot and frees the sail in one motion — far faster (and safer in a hurry) than picking apart a fully set reef knot.' },
+    ],
+    interactive: { kind: 'knot', knotId: 'slip-knot-sail-tie' },
+  },
 
   // ===== Tier 4 — Voyager =====
   {

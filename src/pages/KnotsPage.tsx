@@ -11,9 +11,9 @@ export default function KnotsPage() {
     <div className="knotspage">
       <h1>Knot Library</h1>
       <p className="lesson-summary">
-        Seven core knots cover about 95% of beginner-to-intermediate needs, in their canonical
-        teaching order — plus the rolling hitch as a bonus. Step through each, then tie it on a
-        real piece of rope.
+        These {KNOTS.length} knots cover the vast majority of beginner-to-intermediate needs, in
+        their canonical teaching order — including a quick-release sail tie, plus the rolling hitch
+        as a bonus. Step through each, then tie it on a real piece of rope.
       </p>
       <div className="knot-picker">
         {KNOTS.map((k) => (

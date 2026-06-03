@@ -1,6 +1,6 @@
 import type { Knot } from '../types'
 
-// Seven core knots in canonical teaching order, plus the rolling hitch bonus.
+// Eight core knots in canonical teaching order, plus the rolling hitch bonus.
 export const KNOTS: Knot[] = [
   {
     id: 'figure-eight',
@@ -65,6 +65,20 @@ export const KNOTS: Knot[] = [
     ],
   },
   {
+    id: 'slip-knot-sail-tie',
+    name: 'Slip Knot (Sail Tie)',
+    nickname: 'Quick-Release',
+    tier: 3,
+    use: 'Lashing a furled or flaked sail to the boom with a sail tie (gasket) so a single tug frees it.',
+    steps: [
+      'Pass the sail tie around the furled sail AND the boom, and bring the two ends together.',
+      'Tie the first half of a reef knot: right end OVER the left, then tuck under.',
+      'Begin the second half — left over right — but instead of pulling the end all the way through, push a BIGHT (a folded loop) through.',
+      'Snug it down. You now have a reef knot finished with a quick-release loop — like a single bow of a shoelace.',
+      'To cast off, pull the free tail: the knot spills instantly and the sail is released.',
+    ],
+  },
+  {
     id: 'round-turn-two-half-hitches',
     name: 'Round Turn & Two Half Hitches',
     tier: 3,
@@ -96,9 +110,9 @@ export const KNOTS: Knot[] = [
     tier: 5,
     use: 'Taking the load off a jammed sheet; it grips a rope or spar against a pull in one direction.',
     steps: [
-      'Wrap twice around the object, both wraps crossing OVER the standing part on the same side — these grip.',
-      'Take a third wrap on the OTHER side of the original wraps — a half hitch in the opposite direction.',
-      'Tuck the end under and pull.',
+      'Make two turns around the object, each crossing OVER the standing part on the load side — these two riding turns are what grip.',
+      'Take a third turn in the SAME direction, this time seating it on the far side of the standing part (away from the load).',
+      'Tuck the working end under that third turn and work the knot snug against the direction of pull.',
     ],
   },
 ]

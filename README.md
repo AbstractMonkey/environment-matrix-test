@@ -26,7 +26,7 @@ Each tier ends with a short quiz; scoring **≥ 80%** unlocks the next tier.
 | 4 | **Voyager** | Seamanship — docking, anchoring, crew overboard |
 | 5 | **Racer** | Draft control, the slot, starting strategy, the spinnaker |
 
-43 lessons in total, plus a knot library (8 knots) and three keystone interactives.
+41 lessons in total, plus a knot library (9 knots) and three keystone interactives.
 
 ### Keystone interactives
 - **🚢 Boat Anatomy Explorer** — a hand‑drawn, fully keyboard‑accessible SVG of the
