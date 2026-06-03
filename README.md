@@ -30,8 +30,9 @@ Each tier ends with a short quiz; scoring **≥ 80%** unlocks the next tier.
 
 ### Keystone interactives
 - **🚢 Boat Anatomy Explorer** — a hand‑drawn, fully keyboard‑accessible SVG of the
-  Ensign with 23 labelled hotspots (and a 39‑part list view). Exploring every part is
-  the gate that unlocks Tier 1.
+  Ensign — a side sail plan plus a top‑down deck plan, drawn to the proportions of
+  Pearson's own line drawing — with 26 labelled hotspots (and a 41‑part list view).
+  Exploring every part is the gate that unlocks Tier 1.
 - **🧭 Points‑of‑Sail Dial** — drag the boat around the wind (or use the arrow keys);
   the sails reshape and the correct trim updates live for each point of sail.
 - **🪢 Knot Animator** — step through each knot with a scrubber and tick it off once

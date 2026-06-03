@@ -89,8 +89,12 @@ export const PARTS: Part[] = [
     description: 'A stainless safety railing at the bow — note the Ensign has no lifelines aft of it.' },
   { id: 'stemhead', name: 'Stemhead fitting', group: 'Deck & Cockpit', onSvg: false,
     description: 'The bow fitting where the forestay anchors to the hull.' },
-  { id: 'cuddy-cabin', name: 'Cuddy cabin', group: 'Deck & Cockpit', onSvg: false,
-    description: 'A small forward cabin with a V-berth that sleeps two.' },
+  { id: 'cuddy-cabin', name: 'Cuddy cabin', group: 'Deck & Cockpit', onSvg: true,
+    description: 'A small forward cabin with sitting headroom under the raised coachroof — seen in plan, it holds the berths and head.' },
+  { id: 'berths', name: 'Berths', group: 'Deck & Cockpit', onSvg: true,
+    description: 'Two settee berths in the cuddy cabin, port and starboard; enough to sleep aboard for an overnight or a weekend of gunkholing.' },
+  { id: 'head', name: 'Head (W.C.)', group: 'Deck & Cockpit', onSvg: true,
+    description: 'A portable marine toilet — the "head," or W.C. — tucked forward in the cuddy cabin, between the two berths.' },
 ]
 
 export const SVG_PART_IDS = PARTS.filter((p) => p.onSvg).map((p) => p.id)
