@@ -367,6 +367,10 @@ th { color: var(--ink-dim); font-weight: 600; }
 .knot-svg { width: 100%; max-width: 280px; height: auto; }
 .knot-rope-bg { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 12; stroke-linecap: round; }
 .knot-rope { fill: none; stroke: var(--gold); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
+/* Static context behind the working rope: posts, rings, cleats, spars, boom. */
+.knot-scaffold { fill: rgba(255, 255, 255, 0.05); stroke: rgba(255, 255, 255, 0.16); stroke-width: 1.5; }
+.knot-scaffold-sail { fill: rgba(242, 193, 78, 0.10); stroke: rgba(242, 193, 78, 0.22); stroke-width: 1.5; }
+.knot-scaffold-rope { fill: none; stroke: rgba(255, 255, 255, 0.14); stroke-width: 13; stroke-linecap: round; }
 .knot-stepnum { fill: var(--ink-dim); font-size: 13px; }
 .knot-side { display: flex; flex-direction: column; gap: 0.7rem; }
 .knot-use { font-size: 0.9rem; color: var(--ink-dim); margin: 0; }

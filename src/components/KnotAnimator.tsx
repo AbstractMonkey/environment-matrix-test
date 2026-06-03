@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { KNOT_BY_ID } from '../data/knots'
+import { KNOT_ART, GENERIC_ART } from './knotArt'
 import { useProgress } from '../store/progress'
-
-// A decorative rope path that we "draw" progressively as the learner steps
-// through the knot — an animated scaffold paired with the written steps.
-const ROPE_PATH =
-  'M30 150 C 70 40, 170 40, 150 110 C 135 165, 70 150, 105 95 C 135 48, 205 85, 205 155'
 
 export default function KnotAnimator({ knotId }: { knotId: string }) {
   const knot = KNOT_BY_ID[knotId]
+  const art = KNOT_ART[knotId] ?? GENERIC_ART
   const [step, setStep] = useState(0)
   const tied = useProgress((s) => s.knotsTied.includes(knotId))
   const toggleKnotTied = useProgress((s) => s.toggleKnotTied)
@@ -22,11 +19,12 @@ export default function KnotAnimator({ knotId }: { knotId: string }) {
   return (
     <div className="knot">
       <div className="knot-stage">
-        <svg viewBox="0 0 240 200" className="knot-svg" role="img"
-          aria-label={`Schematic of tying the ${knot.name}, step ${step + 1} of ${total}`}>
-          <path d={ROPE_PATH} className="knot-rope-bg" />
+        <svg viewBox={art.viewBox ?? '0 0 240 200'} className="knot-svg" role="img"
+          aria-label={`Stylised diagram of the ${knot.name} (step ${step + 1} of ${total})`}>
+          {art.scaffold}
+          <path d={art.rope} className="knot-rope-bg" />
           <path
-            d={ROPE_PATH}
+            d={art.rope}
             className="knot-rope"
             pathLength={1}
             style={{ strokeDasharray: 1, strokeDashoffset: 1 - frac }}
