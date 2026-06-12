@@ -30,13 +30,17 @@ Each tier ends with a short quiz; scoring **≥ 80%** unlocks the next tier.
 
 ### Keystone interactives
 - **🚢 Boat Anatomy Explorer** — a hand‑drawn, fully keyboard‑accessible SVG of the
-  Ensign — a side sail plan plus a top‑down deck plan, drawn to the proportions of
-  Pearson's own line drawing — with 26 labelled hotspots (and a 41‑part list view).
-  Exploring every part is the gate that unlocks Tier 1.
+  Ensign as a **three‑view drawing** matching Pearson's own line drawing (sail plan,
+  hull profile, and deck plan, bow to the right, correct 7/8 fractional rig) — with
+  29 labelled hotspots (and a 41‑part list view). Exploring every part is the gate
+  that unlocks Tier 1.
 - **🧭 Points‑of‑Sail Dial** — drag the boat around the wind (or use the arrow keys);
   the sails reshape and the correct trim updates live for each point of sail.
-- **🪢 Knot Animator** — step through each knot with a scrubber and tick it off once
-  you’ve tied it on a real piece of rope.
+- **🪢 Knot Animator** — step‑by‑step rope diagrams with true over/under crossings
+  (verified against canonical references), direction arrows, a "check it" test and a
+  "watch out" common mistake for every knot. Tick each off once you’ve tied it on a
+  real piece of rope. (`scripts/render-art.tsx` renders all the artwork to PNG via
+  resvg for proofing without a browser.)
 - **↔️ Tack/Jibe Simulator** — watch the choreography and command callouts of each turn.
 
 ### Pedagogy

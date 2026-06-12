@@ -95,6 +95,17 @@ export default function Layout() {
               A learn-to-sail course built around the Pearson Ensign — a forgiving,
               full-keel one-design daysailer. Progress is saved in your browser.
             </p>
+            <p>
+              Going further:{' '}
+              <a href="https://www.ensignclass.com/" target="_blank" rel="noreferrer">
+                Ensign Class Association
+              </a>{' '}
+              ·{' '}
+              <a href="https://ensignspars.com/" target="_blank" rel="noreferrer">
+                Ensign Spars
+              </a>{' '}
+              · and nothing replaces time on the water with a good instructor.
+            </p>
           </footer>
         </main>
       </div>

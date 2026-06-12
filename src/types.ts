@@ -80,6 +80,10 @@ export interface Knot {
   tier: TierId
   use: string
   steps: string[]
+  /** How to verify the finished knot is tied correctly. */
+  check?: string
+  /** The most common way this knot goes wrong. */
+  mistake?: string
 }
 
 // ----- Points of sail -----

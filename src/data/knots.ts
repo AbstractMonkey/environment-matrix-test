@@ -14,6 +14,8 @@ export const KNOTS: Knot[] = [
       'Tuck the working end DOWN through the original loop.',
       'Pull both ends to set — it should look like a figure "8".',
     ],
+    check: 'Pull both ends apart: you should see a clean “8” — two interlocked lobes — not a pretzel or a simple “6”.',
+    mistake: 'Skipping the extra half-twist leaves an overhand knot instead — it jams hard under load and is miserable to untie.',
   },
   {
     id: 'cleat-hitch',
@@ -26,6 +28,8 @@ export const KNOTS: Knot[] = [
       'On the final pass, make a small loop and flip it (a locking under-hitch) over the horn.',
       'Pull tight. You should see two parallel lines on top with one crossing line.',
     ],
+    check: 'Look down at the cleat: two parallel lines crossing the top with ONE diagonal over them, and the tail trapped under the final flip.',
+    mistake: 'Piling on extra figure-8s before the locking flip — it doesn’t add security, and a loaded line buried under many wraps can jam when you need to cast off fast.',
   },
   {
     id: 'bowline',
@@ -40,6 +44,8 @@ export const KNOTS: Knot[] = [
       'Back DOWN through the hole — "and back down".',
       'Pull the standing part and the loop to set. It unties easily after any load.',
     ],
+    check: 'The tail should finish INSIDE the loop, lying alongside the standing part. Load the loop and it should not slip at all.',
+    mistake: 'Starting the “rabbit hole” twisted the wrong way — the rabbit can’t come out of its own hole, and the knot capsizes or the tail ends up outside the loop.',
   },
   {
     id: 'clove-hitch',
@@ -49,9 +55,11 @@ export const KNOTS: Knot[] = [
     steps: [
       'Wrap once around the rail or post.',
       'Cross over the first wrap and wrap a second time.',
-      'Tuck the working end UNDER the second wrap.',
+      'Tuck the working end under the diagonal — the centre of the X — so it exits between the two turns.',
       'Pull tight.',
     ],
+    check: 'You should see a clean “X” across the front of the rail with the working end trapped under the centre of it.',
+    mistake: 'Making both turns on the same side without crossing them — that’s just two round turns, and it holds nothing.',
   },
   {
     id: 'reef-knot',
@@ -63,6 +71,8 @@ export const KNOTS: Knot[] = [
       'Cross what is now the left end OVER the right and tuck UNDER — a second half knot.',
       'Remember: "right over left, left over right." Both ends exit on the same side of each loop.',
     ],
+    check: 'It lies flat, and on each side BOTH parts of the same end exit the loop together — the picture is perfectly symmetric.',
+    mistake: '“Right over left” twice makes a granny knot: it both slips under load and jams when you try to untie it.',
   },
   {
     id: 'slip-knot-sail-tie',
@@ -77,6 +87,8 @@ export const KNOTS: Knot[] = [
       'Snug it down. You now have a reef knot finished with a quick-release loop — like a single bow of a shoelace.',
       'To cast off, pull the free tail: the knot spills instantly and the sail is released.',
     ],
+    check: 'One firm tug on the free tail should spill the whole knot instantly. If it doesn’t, retie it.',
+    mistake: 'Pushing the bare end through instead of a bight — you’ve tied a full reef knot with no quick release, exactly what you didn’t want in a hurry.',
   },
   {
     id: 'round-turn-two-half-hitches',
@@ -89,6 +101,8 @@ export const KNOTS: Knot[] = [
       'Repeat in the same direction — a second half hitch.',
       'Pull tight.',
     ],
+    check: 'The two half hitches, seen together, form a small clove hitch around the standing part — snug them down against the round turn.',
+    mistake: 'Tying the second half hitch in the OPPOSITE direction to the first — the hitches fight each other and can work loose.',
   },
   {
     id: 'sheet-bend',
@@ -102,6 +116,8 @@ export const KNOTS: Knot[] = [
       'Tuck the working end UNDER itself on the front — not through. Both free ends exit on the same side.',
       'Pull all four ends to set. Double the tuck for slippery line.',
     ],
+    check: 'Both short tails must exit on the SAME side of the knot. Always form the bight in the THICKER rope.',
+    mistake: 'Tails on opposite sides make a “left-handed” sheet bend, which is measurably weaker and prone to slipping.',
   },
   {
     id: 'rolling-hitch',
@@ -114,6 +130,8 @@ export const KNOTS: Knot[] = [
       'Take a third turn in the SAME direction, this time seating it on the far side of the standing part (away from the load).',
       'Tuck the working end under that third turn and work the knot snug against the direction of pull.',
     ],
+    check: 'Pull along the loaded direction: the two riding turns should bite and hold. Pulled the other way, the hitch slides freely — that’s by design.',
+    mistake: 'Seating the riding turns on the wrong side of the standing part — the hitch slides under load instead of gripping.',
   },
 ]
 
