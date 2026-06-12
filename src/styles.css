@@ -1,20 +1,34 @@
 :root {
-  --bg: #0a1d27;
-  --bg-2: #0e2735;
-  --panel: #12303f;
-  --panel-2: #173a4c;
+  --bg: #081a24;
+  --bg-2: #0d2533;
+  --panel: #11303f;
+  --panel-2: #16394b;
   --line: rgba(255, 255, 255, 0.10);
   --line-strong: rgba(255, 255, 255, 0.18);
-  --ink: #e9f2f6;
-  --ink-dim: #9fb7c3;
-  --ink-faint: #6f8a98;
+  --ink: #ecf4f8;
+  --ink-dim: #a3bac6;
+  --ink-faint: #718c9a;
   --accent: #4aa3c7;
   --gold: #f2c14e;
+  --brass: #d8a544;
   --good: #5ec27a;
   --bad: #e07a6b;
+  --stage: #0b2130;
   --radius: 14px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+}
+
+::selection { background: rgba(242, 193, 78, 0.30); }
+
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -26,7 +40,8 @@ body {
   font-family: var(--font);
   color: var(--ink);
   background:
-    radial-gradient(1200px 600px at 80% -10%, #14384a 0%, transparent 60%),
+    radial-gradient(1200px 600px at 80% -10%, #15394c 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #0e2e3e 0%, transparent 55%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   background-attachment: fixed;
   line-height: 1.6;
@@ -37,7 +52,8 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 0.5em; }
-h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: -0.01em; }
+h1, h2 { font-family: var(--font-display); font-weight: 600; }
+h1 { font-size: clamp(1.6rem, 3vw, 2.3rem); letter-spacing: 0.005em; }
 p { margin: 0 0 1em; }
 
 code {
@@ -138,7 +154,7 @@ code {
 .brand { display: flex; align-items: center; gap: 0.5rem; color: var(--ink); font-weight: 700; }
 .brand:hover { text-decoration: none; }
 .brand-mark { font-size: 1.4rem; }
-.brand-text { letter-spacing: -0.01em; }
+.brand-text { font-family: var(--font-display); letter-spacing: 0.01em; font-size: 1.05rem; }
 .topbar-progress { margin-left: auto; display: flex; align-items: center; gap: 0.5rem; min-width: 120px; }
 .topbar-bar { flex: 1; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 999px; overflow: hidden; }
 .topbar-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--good)); border-radius: 999px; transition: width 0.4s ease; }
@@ -193,9 +209,17 @@ code {
 .tiernav-tools a:hover, .tiernav-tools a.active { background: rgba(255, 255, 255, 0.05); color: var(--ink); text-decoration: none; }
 
 /* ---------- Home ---------- */
-.hero { padding: 1rem 0 2rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
-.hero-kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.78rem; color: var(--accent); margin-bottom: 0.6rem; }
-.hero h1 { font-size: clamp(1.9rem, 4vw, 3rem); max-width: 16ch; }
+.hero { position: relative; padding: 1.4rem 0 2.4rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem; }
+.hero::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 14px;
+  background-repeat: repeat-x;
+  background-size: 56px 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='14' viewBox='0 0 56 14'%3E%3Cpath d='M0 8 Q14 0 28 8 T56 8' fill='none' stroke='%234aa3c7' stroke-opacity='0.35' stroke-width='2'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-kicker { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.78rem; color: var(--gold); margin-bottom: 0.6rem; }
+.hero h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); max-width: 17ch; }
 .hero-lede { max-width: 62ch; color: var(--ink-dim); font-size: 1.05rem; }
 .hero-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.2rem; }
 .hero-progress { margin-top: 1rem; color: var(--ink-faint); font-size: 0.9rem; }
@@ -209,7 +233,11 @@ code {
   transition: transform 0.1s ease, border-color 0.15s ease;
 }
 .tier-card::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--accent); }
-.tier-card:hover { text-decoration: none; transform: translateY(-3px); border-color: var(--line-strong); }
+.tier-card:hover {
+  text-decoration: none; transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.30), 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+}
 .tier-card.is-locked { opacity: 0.62; }
 .tier-card.is-complete { border-color: color-mix(in srgb, var(--good) 45%, transparent); }
 .tier-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; }
@@ -363,15 +391,17 @@ th { color: var(--ink-dim); font-weight: 600; }
 .dial-buttons { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
 /* ---------- Knot animator ---------- */
-.knot-stage { display: grid; place-items: center; }
-.knot-svg { width: 100%; max-width: 280px; height: auto; }
-.knot-rope-bg { fill: none; stroke: rgba(255, 255, 255, 0.08); stroke-width: 12; stroke-linecap: round; }
-.knot-rope { fill: none; stroke: var(--gold); stroke-width: 9; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
-/* Static context behind the working rope: posts, rings, cleats, spars, boom. */
-.knot-scaffold { fill: rgba(255, 255, 255, 0.05); stroke: rgba(255, 255, 255, 0.16); stroke-width: 1.5; }
-.knot-scaffold-sail { fill: rgba(242, 193, 78, 0.10); stroke: rgba(242, 193, 78, 0.22); stroke-width: 1.5; }
-.knot-scaffold-rope { fill: none; stroke: rgba(255, 255, 255, 0.14); stroke-width: 13; stroke-linecap: round; }
-.knot-stepnum { fill: var(--ink-dim); font-size: 13px; }
+.knot-stage { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.knot-svg { width: 100%; max-width: 340px; height: auto; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--line); }
+/* Rope segments fade in as the learner steps forward. */
+.knot-layer { transition: opacity 0.35s ease; }
+.knot-stepnum { margin: 0; color: var(--ink-dim); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.knot-note { font-size: 0.85rem; margin: 0; padding: 0.55rem 0.75rem; border-radius: 9px; border: 1px solid var(--line); }
+.knot-note strong { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em; }
+.knot-note-check { background: rgba(94, 194, 122, 0.07); border-left: 3px solid var(--good); }
+.knot-note-check strong { color: var(--good); }
+.knot-note-mistake { background: rgba(224, 122, 107, 0.07); border-left: 3px solid var(--bad); }
+.knot-note-mistake strong { color: var(--bad); }
 .knot-side { display: flex; flex-direction: column; gap: 0.7rem; }
 .knot-use { font-size: 0.9rem; color: var(--ink-dim); margin: 0; }
 .knot-steps { list-style: none; padding: 0; margin: 0; counter-reset: step; display: flex; flex-direction: column; gap: 0.3rem; }
@@ -402,6 +432,13 @@ th { color: var(--ink-dim); font-weight: 600; }
 
 /* ---------- Misc pages ---------- */
 .knot-picker { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 1.4rem; }
+
+/* ---------- Scrollbar ---------- */
+* { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.18) transparent; }
+
+/* ---------- Knots page header ---------- */
+.knot-progress { color: var(--ink-dim); font-size: 0.9rem; margin: 0 0 0.4rem; }
+.knot-progress strong { color: var(--gold); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {

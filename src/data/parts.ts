@@ -35,7 +35,7 @@ export const PARTS: Part[] = [
     description: 'Wire from the masthead to the transom — the only rig adjustment Ensign class rules allow underway.' },
   { id: 'shrouds', name: 'Shrouds (upper & lower)', group: 'Spars & Standing Rigging', onSvg: true,
     description: 'Side wires that hold the mast up laterally; the lowers attach below the spreaders.' },
-  { id: 'chainplates', name: 'Chainplates', group: 'Spars & Standing Rigging', onSvg: false,
+  { id: 'chainplates', name: 'Chainplates', group: 'Spars & Standing Rigging', onSvg: true,
     description: 'Stainless fittings on deck where the shrouds and stays anchor to the hull.' },
 
   // ----- Sails -----
@@ -69,9 +69,9 @@ export const PARTS: Part[] = [
     description: 'Holds the boom up when the mainsail is lowered.' },
   { id: 'boom-vang', name: 'Boom vang', group: 'Running Rigging & Hardware', onSvg: true,
     description: 'Pulls down on the boom to flatten the main and control leech twist.' },
-  { id: 'winches', name: 'Winches', group: 'Running Rigging & Hardware', onSvg: false,
+  { id: 'winches', name: 'Winches', group: 'Running Rigging & Hardware', onSvg: true,
     description: 'Two on the cockpit coaming give you mechanical advantage on the jib sheets.' },
-  { id: 'cleats', name: 'Cleats', group: 'Running Rigging & Hardware', onSvg: false,
+  { id: 'cleats', name: 'Cleats', group: 'Running Rigging & Hardware', onSvg: true,
     description: 'Horn cleats secure halyards at the mast and dock lines at the bow and stern.' },
 
   // ----- Deck & Cockpit -----

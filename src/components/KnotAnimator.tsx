@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { KNOT_BY_ID } from '../data/knots'
-import { KNOT_ART, GENERIC_ART } from './knotArt'
+import { KNOT_ART, GENERIC_ART, KnotDiagram } from './knotArt'
 import { useProgress } from '../store/progress'
 
 export default function KnotAnimator({ knotId }: { knotId: string }) {
@@ -10,29 +10,28 @@ export default function KnotAnimator({ knotId }: { knotId: string }) {
   const tied = useProgress((s) => s.knotsTied.includes(knotId))
   const toggleKnotTied = useProgress((s) => s.toggleKnotTied)
 
+  // Start each knot at step 1 — without this, the step index leaks between
+  // knots and can exceed a shorter knot's step count ("Step 5 / 4").
+  const [shownKnotId, setShownKnotId] = useState(knotId)
+  if (shownKnotId !== knotId) {
+    setShownKnotId(knotId)
+    setStep(0)
+  }
+
   if (!knot) return <p className="muted">Unknown knot: {knotId}</p>
 
   const total = knot.steps.length
-  const frac = (step + 1) / total
   const atEnd = step === total - 1
 
   return (
     <div className="knot">
       <div className="knot-stage">
-        <svg viewBox={art.viewBox ?? '0 0 240 200'} className="knot-svg" role="img"
-          aria-label={`Stylised diagram of the ${knot.name} (step ${step + 1} of ${total})`}>
-          {art.scaffold}
-          <path d={art.rope} className="knot-rope-bg" />
-          <path
-            d={art.rope}
-            className="knot-rope"
-            pathLength={1}
-            style={{ strokeDasharray: 1, strokeDashoffset: 1 - frac }}
-          />
-          <text x="120" y="190" textAnchor="middle" className="knot-stepnum">
-            Step {step + 1} / {total}
-          </text>
-        </svg>
+        <KnotDiagram
+          art={art}
+          step={step}
+          ariaLabel={`Diagram of the ${knot.name}, step ${step + 1} of ${total}: ${knot.steps[step]}`}
+        />
+        <p className="knot-stepnum" aria-hidden="true">Step {step + 1} of {total}</p>
       </div>
 
       <div className="knot-side">
@@ -58,6 +57,17 @@ export default function KnotAnimator({ knotId }: { knotId: string }) {
           <button className="btn btn-small" disabled={atEnd}
             onClick={() => setStep((s) => Math.min(total - 1, s + 1))}>Next →</button>
         </div>
+
+        {knot.check && (
+          <p className="knot-note knot-note-check">
+            <strong>Check it:</strong> {knot.check}
+          </p>
+        )}
+        {knot.mistake && (
+          <p className="knot-note knot-note-mistake">
+            <strong>Watch out:</strong> {knot.mistake}
+          </p>
+        )}
 
         <label className="knot-done-row">
           <input type="checkbox" checked={tied} onChange={() => toggleKnotTied(knotId)} />
